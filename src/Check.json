@@ -1,0 +1,398 @@
+ [
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2022,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2022,
+        "adjustment": 0.23
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2022,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2022,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2023,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2023,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2023,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2023,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2024,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2024,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2024,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2024,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2025,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2025,
+        "adjustment": 6.54
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2025,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2025,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2026,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2026,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2026,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2026,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2027,
+        "adjustment": 0.89
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2027,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2027,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2027,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2028,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2028,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2028,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2028,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2029,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2029,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2029,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2029,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2030,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2030,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2030,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2030,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2031,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2031,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2031,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2031,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Value",
+        "year": 2032,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core",
+        "year": 2032,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Core plus",
+        "year": 2032,
+        "adjustment": 0
+    },
+    {
+        "country": "Australia",
+        "category": "Carbonates",
+        "economic_outlook": "Base",
+        "user_scenario": "dec__2",
+        "price_segment": "Premium",
+        "year": 2032,
+        "adjustment": 0
+    }
+]

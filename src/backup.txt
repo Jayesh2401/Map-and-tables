@@ -1,0 +1,1113 @@
+import React, { Fragment, useEffect, useState } from "react";
+import Select from "react-select";
+import { SlArrowUp } from "react-icons/sl";
+import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
+import datas from "./countryjson.json";
+function Country() {
+  const [alldata, setAlldata] = useState(datas.detail);
+  const [drop, setDrop] = useState(true);
+  const [dropstate, setDropstate] = useState(true);
+  const [dropcity, setDropcity] = useState(true);
+  console.log(alldata);
+  const [selectedOptions, setSelectedOptions] = useState("Country");
+  const [stateselected, setStateSelected] = useState("State");
+  const [cityselected, setCitySelected] = useState("City");
+  const [statearray, setStatearray] = useState([]);
+  const [cityarray, setCityarray] = useState(null);
+
+  const fetchData = () => {};
+
+  //   setSelectedOptions(Object.keys(alldata));
+  //   useEffect(() => {
+  // setTimeout(function () {
+  //   let optList = document.getElementsByClassName("css-1qprcsu-option");
+  //   //   debugger;
+  //   for (let i = 0; i < optList.length; i++) {
+  //     let item = optList[i];
+  //     let index = i;
+  //     addTitle(item, index);
+  //   }
+  // }, 100);
+  //   }, []);
+
+  // const checkstate = Object.values(alldata)[0].states;
+  // checkstate.map((e) => {
+  //   console.log(e.geography);
+  // });
+
+  //   function addTitle(item, index) {
+  //     let val = item.innerText;
+  //     item.title = val;
+  //   }
+  //   console.log(typeof Object.keys(alldata));
+
+  console.log(cityarray, "cityarray");
+
+  return (
+    // <div onClick={()=>{!drop ? setDrop(true):setDrop(false)}} style={{height:"100vh"}}>
+    <div style={{ height: "100vh" }}>
+      <div className="adjustment">
+        {/* <p>Countries</p> */}
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setDrop(!drop);
+              setDropcity(true)
+              setDropstate(true);
+            }}
+          >
+            {" "}
+            {selectedOptions} <SlArrowUp />{" "}
+          </div>
+          {!drop && (
+            <div className="dataBox">
+              {Object.keys(alldata).map((e, index) => (
+                <div
+                  className="Countrylist"
+                  key={index}
+                  onClick={() => {
+                    setSelectedOptions(e);
+                    setStatearray(Object.values(alldata)[index].states);
+                    // check(e, index);
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    id={e}
+                    onChange={() => console.log(e)}
+                  />
+                  <label htmlFor={e}>{e}</label>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setDropstate(!dropstate);
+              setDropcity(true)
+              setDrop(true);
+            }}
+          >
+            {stateselected} <SlArrowUp />
+          </div>
+          {!dropstate && (
+            <div className="dataBox">
+              {statearray.length > 0 ? (
+                statearray.map((e, index) => (
+                  <div
+                    className="Countrylist"
+                    key={index}
+                    onClick={() => {
+                      setCityarray(e.cities_data.cities);
+                      setStateSelected(e.geography);
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      id={e.geography}
+                      onChange={() => console.log(e.geography)}
+                    />
+                    <label htmlFor={e.geography}>{e.geography}</label>
+                  </div>
+                ))
+              ) : (
+                <div className="Countrylist">
+                  <label>State</label>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setDropcity(!dropcity);
+              setDrop(true);
+              setDropstate(true);
+            }}
+          >
+            {cityselected} <SlArrowUp />
+          </div>
+          {!dropcity && (
+            <div className="dataBox">
+              {cityarray !== null && cityarray.length > 0 ? (
+                cityarray.map((e, index) => (
+                  <div
+                    className="Countrylist"
+                    key={index}
+                    onClick={() => {
+                      setCitySelected(e.geography);
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      id={e.geography}
+                      onChange={() => console.log(e.geography)}
+                    />
+                    <label htmlFor={e.geography}>{e.geography}</label>
+                  </div>
+                ))
+              ) : (
+                <div className="Countrylist">
+                  <label>City</label>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        {/* <select>rghwr
+        {
+            Object.keys(alldata).map((e,index)=> <Fragment>
+                
+                <option key={index}>{e}</option>
+                </Fragment>)
+        }
+        </select> */}
+        {/* <Select 
+          defaultValue={alldata}
+          onChange={setAlldata}
+          options={ Object.keys(alldata)}
+        /> */}
+        {/* <ReactMultiSelectCheckboxes
+            options={[{ label: "All", value: "*" }]}
+          placeholderButtonLabel="Country"
+          setState={setSelectedOptions}
+          value={selectedOptions}
+        ></ReactMultiSelectCheckboxes> */}
+      </div>
+    </div>
+  );
+}
+
+export default Country;
+
+
+import { useMemo } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { SlArrowUp } from "react-icons/sl";
+import "./App.css";
+import data from "./countryjson.json";
+
+const countries = () => {
+  const countries = [];
+
+  for (const country in { ...data.detail }) {
+    const countri = { ...data.detail };
+    if (Object.hasOwnProperty.call(countri, country)) {
+      const element = countri[country];
+      countries.push({ country, state: element.states });
+    }
+  }
+  return countries;
+};
+
+function Filter() {
+  const allData = useMemo(() => countries(), []);
+  const [countryDropDown, setCountryDropDown] = useState(false);
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [stateDropDown, setStateDropDown] = useState(false);
+  const [statesInSelectedCountry, setStatesInSelectedCountry] = useState([]);
+  const [selectedStates, setSelectedStates] = useState([]);
+  const [cityDropDown, setCityDropDown] = useState(false);
+  const [citiesInSelectedState, setCitiesInSelectedState] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
+  const [countrySearch, setCountrySearch] = useState("");
+  const [stateSearch, setStateSearch] = useState("");
+  const [citySearch, setCitySearch] = useState("");
+
+  useEffect(() => {
+    setStatesInSelectedCountry([]);
+    allData.map(
+      (data) =>
+        selectedCountries.includes(data.country) &&
+        setStatesInSelectedCountry((prev) => [
+          ...prev,
+          `${data.country} country`,
+          ...data.state.map((state) => state.geography),
+        ])
+    );
+  }, [selectedCountries, allData]);
+
+  useEffect(() => {
+    setCitiesInSelectedState([]);
+    allData.map(
+      (data) =>
+        selectedCountries.includes(data.country) &&
+        data.state.map(
+          (state) =>
+            selectedStates.includes(state.geography) &&
+            (state.cities_data.cities === null
+              ? setCitiesInSelectedState((prev) => [
+                  ...prev,
+                  `${state.geography} state`,
+                  "No City available",
+                ])
+              : setCitiesInSelectedState((prev) => [
+                  ...prev,
+                  `${state.geography} state`,
+                  ...state.cities_data.cities.map((city) => city.geography),
+                ]))
+        )
+    );
+  }, [selectedStates, allData, selectedCountries]);
+
+  useEffect(() => {
+    selectedStates.map(
+      (state) =>
+        !statesInSelectedCountry.includes(state) &&
+        setSelectedStates((prev) =>
+          prev.filter(
+            (unselectCountryStates) => unselectCountryStates !== state
+          )
+        )
+    );
+  }, [selectedStates, statesInSelectedCountry]);
+
+  useEffect(() => {
+    selectedCities.map(
+      (city) =>
+        !citiesInSelectedState.includes(city) &&
+        setSelectedCities((prev) =>
+          prev.filter((unselectStatecity) => unselectStatecity !== city)
+        )
+    );
+  }, [citiesInSelectedState, selectedCities]);
+
+  const filterCountries =
+    countrySearch.length < 1
+      ? allData
+      : allData.filter((data) =>
+          data.country
+            .toLocaleLowerCase()
+            .includes(countrySearch.toLocaleLowerCase())
+        );
+
+  // const check = filterCountries.map((e) =>
+  //   console.log(e.country.indexOf(countrySearch))
+  // );
+
+  const filterSates =
+    stateSearch.length < 1
+      ? statesInSelectedCountry
+      : statesInSelectedCountry.filter(
+          (data) =>
+            data.endsWith("country") ||
+            data.toLocaleLowerCase().includes(stateSearch.toLocaleLowerCase())
+        );
+
+  const filterCities =
+    citySearch.length < 1
+      ? citiesInSelectedState
+      : citiesInSelectedState.filter(
+          (data) =>
+            data.endsWith("state") ||
+            data.toLocaleLowerCase().includes(citySearch.toLocaleLowerCase())
+        );
+
+  return (
+    <div>
+      <div className="adjustment">
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setCountryDropDown((prev) => !prev);
+              setStateDropDown(false);
+              setCityDropDown(false);
+            }}
+          >
+            {selectedCountries.length === 0 ? (
+              <p>Select Country</p>
+            ) : selectedCountries.length > 1 ? (
+              <p>Multple Countries</p>
+            ) : (
+              selectedCountries.map((country) => `${country}`)
+            )}
+            <SlArrowUp />
+          </div>
+          {countryDropDown && (
+            <div className="dataBox">
+              <input
+                type="search"
+                className="searchBar"
+                value={countrySearch}
+                onChange={(e) => setCountrySearch(e.target.value)}
+              />
+              {filterCountries.map((data, i) => {
+                const brokenString = data.country
+                  .toLowerCase()
+                  .split(countrySearch.toLowerCase());
+                return (
+                  <div
+                    key={data.country}
+                    className="Countrylist"
+                    onClick={() =>
+                      selectedCountries.includes(data.country)
+                        ? setSelectedCountries((prev) =>
+                            prev.filter(
+                              (selectedCountry) =>
+                                selectedCountry !== data.country
+                            )
+                          )
+                        : setSelectedCountries((prev) => [
+                            ...prev,
+                            data.country,
+                          ])
+                    }
+                  >
+                    <input
+                      type="checkbox"
+                      id={data.country}
+                      checked={selectedCountries.includes(data.country)}
+                      onChange={() => {}}
+                    />
+                    <p>
+                      {brokenString.map((str, i) => {
+                        console.log(brokenString.length, i, "brokenString");
+                        return (
+                          <span key={i}>
+                            {str === "" ? (
+                              i !== brokenString.length - 1 && (
+                                <span className="highlight normal">
+                                  {console.log("called")}
+                                  {countrySearch}
+                                </span>
+                              )
+                            ) : i < brokenString.length - 1 ? (
+                              <>
+                                {console.log(str, "start")}
+                                <span className="normal">{str}</span>
+                                <span className="highlight normal">
+                                  {countrySearch}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                {console.log(str, "end")}
+                                <span className="normal">{str}</span>
+                              </>
+                            )}
+                          </span>
+                        );
+                      })}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setStateDropDown((prev) => !prev);
+              setCountryDropDown(false);
+              setCityDropDown(false);
+            }}
+          >
+            {selectedStates.length === 0 ? (
+              <p>Select State</p>
+            ) : selectedStates.length > 1 ? (
+              <p>Multple states</p>
+            ) : (
+              selectedStates.map((state) => `${state}`)
+            )}
+            <SlArrowUp />
+          </div>
+          {stateDropDown && (
+            <div className="dataBox">
+              <input
+                type="search"
+                className="searchBar"
+                value={stateSearch}
+                onChange={(e) => setStateSearch(e.target.value)}
+              />
+              {filterSates.length > 0 ? (
+                filterSates.map((state, i) => {
+                  const brokenString = state
+                    .toLowerCase()
+                    .split(stateSearch.toLowerCase());
+                  console.log(brokenString);
+                  return (
+                    <div
+                      key={i}
+                      className={
+                        state.endsWith(`country`)
+                          ? "Countrylist head"
+                          : "Countrylist"
+                      }
+                      onClick={() => {
+                        !state.endsWith(`country`) &&
+                          (selectedStates.includes(state)
+                            ? setSelectedStates((prev) =>
+                                prev.filter(
+                                  (selectedState) => selectedState !== state
+                                )
+                              )
+                            : setSelectedStates((prev) => [...prev, state]));
+                      }}
+                    >
+                      {!state.endsWith(`country`) && (
+                        <input
+                          type="checkbox"
+                          id={state}
+                          checked={selectedStates.includes(state)}
+                          onChange={() => {}}
+                        />
+                      )}
+                      {state.endsWith(`country`) ? (
+                        state.replace(" country", "")
+                      ) : (
+                        <p>
+                          {brokenString.map((str, i) => {
+                            return (
+                              <span key={i}>
+                                {str === "" ? (
+                                  i !== brokenString.length - 1 && (
+                                    <span className="highlight normal">
+                                      {stateSearch}
+                                    </span>
+                                  )
+                                ) : i < brokenString.length - 1 ? (
+                                  <>
+                                    <span className="normal">{str}</span>
+                                    <span className="highlight normal">
+                                      {stateSearch}
+                                    </span>
+                                  </>
+                                ) : (
+                                  <span className="normal">{str}</span>
+                                )}
+                              </span>
+                            );
+                          })}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="Countrylist">No country selcted</div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div
+            className="countriesdropdown"
+            onClick={() => {
+              setCityDropDown((prev) => !prev);
+              setStateDropDown(false);
+              setCountryDropDown(false);
+            }}
+          >
+            {selectedCities.length === 0 ? (
+              <p>Select City</p>
+            ) : selectedCities.length > 1 ? (
+              <p>Multple cities</p>
+            ) : (
+              selectedCities.map((city) => `${city}`)
+            )}
+            <SlArrowUp />
+          </div>
+          {cityDropDown && (
+            <div className="dataBox">
+              <input
+                type="search"
+                className="searchBar"
+                value={citySearch}
+                onChange={(e) => setCitySearch(e.target.value)}
+              />
+              {filterCities.length > 0 ? (
+                filterCities.map((city, i) => {
+                  const brokenString = city
+                    .toLowerCase()
+                    .split(citySearch.toLowerCase());
+
+                  return (
+                    <div
+                      key={i}
+                      className={
+                        city.endsWith("state")
+                          ? "Countrylist head"
+                          : "Countrylist"
+                      }
+                      onClick={() => {
+                        !city.endsWith("state") &&
+                          !city.endsWith("available") &&
+                          (selectedCities.includes(city)
+                            ? setSelectedCities((prev) =>
+                                prev.filter(
+                                  (selectedCity) => selectedCity !== city
+                                )
+                              )
+                            : setSelectedCities((prev) => [...prev, city]));
+                      }}
+                    >
+                      {!city.endsWith("state") &&
+                        !city.endsWith("available") && (
+                          <input
+                            type="checkbox"
+                            id={city}
+                            checked={selectedCities.includes(city)}
+                            onChange={() => {}}
+                          />
+                        )}
+                      {city.endsWith("state") ? (
+                        city.replace(" state", "")
+                      ) : (
+                        <p>
+                          {brokenString.map((str, i) => {
+                            return (
+                              <span key={i}>
+                                {str === "" ? (
+                                  i !== brokenString.length - 1 && (
+                                    <span className="highlight normal">
+                                      {citySearch}
+                                    </span>
+                                  )
+                                ) : i < brokenString.length - 1 ? (
+                                  <>
+                                    <span className="normal">{str}</span>
+                                    <span className="highlight normal">
+                                      {citySearch}
+                                    </span>
+                                  </>
+                                ) : (
+                                  <span className="normal">{str}</span>
+                                )}
+                              </span>
+                            );
+                          })}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="Countrylist">No state Selected</div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Filter;
+
+
+
+dec 7====================================================++++++++++++++++++++++++++++++++++++
+
+import React, { Fragment, useEffect, useMemo, useState } from "react";
+import Map, { Label, Layer, Size, Tooltip } from "devextreme-react/vector-map";
+import { customProjection } from "./customProjection";
+import AllStates from "./statejson.json";
+import AllCities from "./cityjson.json";
+import data from "./countryjson.json";
+import "./App.css";
+const countries = () => {
+  const countries = [];
+
+  for (const country in { ...data.detail }) {
+    const countri = { ...data.detail };
+    if (Object.hasOwnProperty.call(countri, country)) {
+      const element = countri[country];
+      countries.push({ country, state: element.states });
+    }
+  }
+  return countries;
+};
+
+function Maps() {
+  const allData = useMemo(() => countries(), []);
+  const [colorGroups2, setColorGroups2] = useState([]);
+  const [statesInSelectedCountry, setStatesInSelectedCountry] = useState([]);
+  const [centerCoords, setCenterCoords] = useState([]);
+  const [subNationalCountry, setSubNationalCountry] = useState("Colombia");
+  const [subNationalMap, setSubNationalMap] = useState({
+    countryData: null,
+    citiesData: null,
+    mapBounds: null,
+    zoomFactor: null,
+  });
+  const streamsPalette = [
+    "#D1845A",
+    "#DE8C5F",
+    "#E99566",
+    "#E79963",
+    "#F4AB6C",
+    "#FEBD77",
+    "#FFDE94",
+  ].reverse();
+
+  // const mapBounds = [-180, 80, 0, -70];
+
+  // const mapBounds = [-180, 80, 0, -70];
+
+  // const mapBounds = [-180, 85, 180, -60];
+  // console.log(subNationalCountry, "subNationalMap", subNationalMap);
+  useEffect(() => {
+    console.log("called");
+    let c = AllStates.features.filter((feature) => {
+      if (feature.properties["COUNTRY"] === subNationalCountry) {
+        return feature;
+      }
+      return;
+    });
+    const d = {
+      type: "FeatureCollection",
+      features: c,
+    };
+
+    let city = AllCities.features.filter((feature) => {
+      if (feature.properties["COUNTRY"] === subNationalCountry) {
+        return feature;
+      }
+      return;
+    });
+    const dots = {
+      type: "FeatureCollection",
+      features: city,
+    };
+    // console.log(d, "==============", dots);
+    // console.log(subNationalCountry, "====insside====", subNationalMap);
+    subNationalCountry === "Colombia"
+      ? setSubNationalMap((prev) => ({
+          ...prev,
+          mapBounds: [-180, 80, 0, -70],
+        }))
+      : setSubNationalMap((prev) => ({
+          ...prev,
+          mapBounds: [-180, 85, 180, -60],
+        }));
+
+    setSubNationalMap((prev) => ({
+      ...prev,
+      countryData: d,
+      citiesData: dots,
+      // mapBounds: mapBounds,
+      zoomFactor: 5,
+    }));
+    
+  }, [subNationalCountry]);
+
+  // useEffect(() => {
+  //   setStatesInSelectedCountry([]);
+  //   allData.map(
+  //     (data) =>
+  //       subNationalCountry.includes(data.country) &&
+  //       setStatesInSelectedCountry((prev) => [
+  //         ...prev,
+  //         ...data.state.map((state) => state.geography),
+  //       ])
+  //   );
+  // }, [subNationalCountry, allData]);
+
+  const customizeLayer = (elements) => {
+    // console.log(elements);
+    // elements.forEach((e)=>{
+    //   console.log(e, "segerg");
+    //   const countryGDPData = {year:2022 , total : Math.random()*100}
+    //   e.attribute(
+    //     "total",
+    //     countryGDPData || 0
+    //   );
+    // })
+  };
+
+  // console.log(statesInSelectedCountry);
+
+  const TooltipTemplate = (info) => {
+    let name = info.attribute("SUB1");
+    let CITY = info.attribute("CITY");
+    let COUNTRY = info.attribute("COUNTRY");
+    // console.log(name, CITY, COUNTRY);
+
+    return <div>{name}</div>;
+  };
+  console.log(subNationalMap.zoomFactor, "zoomfactor");
+  return (
+    <div>
+      <div>
+        <div>
+          <select onChange={(e) => setSubNationalCountry(e.target.value)}>
+            <option>{subNationalCountry}</option>
+            {allData.map((e, index) => (
+              <Fragment key={index}>
+                <option>{e.country}</option>
+              </Fragment>
+            ))}
+          </select>
+        </div>
+        {/* {subNationalMap.zoomFactor && ( */}
+        <>
+          {console.log(subNationalMap.zoomFactor, "inside")}
+          <Map
+            // defaultZoom={5}
+            // minZoomFactor={subNationalMap.zoomFactor}
+            // zoomFactor={5}
+
+            zoomFactor={subNationalMap.zoomFactor}
+            // maxZoomFactor={5}
+            controls={false}
+            bounds={subNationalMap?.mapBounds}
+            // colorGroups={colorGroups2}
+            colorGroupingField="total"
+            projection={customProjection}
+            // center={centerCoords}
+            id="map-container"
+          >
+            <Layer
+              name="areas"
+              palette={streamsPalette}
+              dataSource={subNationalMap?.countryData}
+              colorGroups={colorGroups2}
+              colorGroupingField="total"
+              label="enabled: true"
+              customize={customizeLayer}
+            >
+              <Label enabled={true} />
+            </Layer>
+            {/* <Size
+                    height={300}
+                    width={600}
+                /> */}
+            <Layer
+              name="marker"
+              dataSource={subNationalMap?.citiesData}
+              colorGroupingField="total"
+              label="enabled: true"
+              customize={customizeLayer}
+            >
+              <Label enabled={true} />
+            </Layer>
+            <Tooltip enabled={true} contentRender={TooltipTemplate} />
+          </Map>
+        </>
+        {/* )} */}
+      </div>
+    </div>
+  );
+}
+
+export default Maps;
+
+
+
+***************DEC 12***************
+
+import React, { Fragment, useMemo } from "react";
+import Check from "./Check.json";
+// const Construction = () => {
+//   const All = [];
+
+//   for (const demo in {...Check }) {
+//     console.log(demo);
+//     // const demos = { ...Check };
+//     // if (Object.hasOwnProperty.call(demos, demo)) {
+//     //   console.log(demos);
+//     // }
+//   }
+// };
+
+function Dmpricing() {
+  //   console.log(Check);
+  //   const allData = useMemo(() => Construction(), []);
+
+  //   Check.map((e) => {
+  // const data = Check.includes(e.year === e.year);
+  //    console.log(data)
+  //   });
+
+  const unique = [...new Map(Check.map((m) => [m.year, m])).values()];
+  const year = unique.map((e) => e.year);
+
+  const Premium = Check.filter((e) => e.price_segment === "Premium");
+  const Core = Check.filter((e) => e.price_segment === "Core");
+  const Core_plus = Check.filter((e) => e.price_segment === "Core plus");
+  const Value = Check.filter((e) => e.price_segment === "Value");
+  console.log(Core_plus);
+  const handleChange = (e) => {
+    console.log(e);
+  };
+  return (
+    <div className="BoxContainer">
+      <h4>Segment-level pricing actions</h4>
+      <table>
+        <tbody>
+          <tr>
+            <th>Adjustment</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th>2024</th>
+            <th>2025</th>
+          </tr>
+          <tr>
+            <td>Premium</td>
+            <td>
+              <input defaultValue="10" onChange={(e) => handleChange(e)} />
+            </td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td>Core plus</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td>Core</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+          </tr>
+          <tr>
+            <td>Value</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+            <td>10%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Adjustment</th>
+              {year.map((e, index) => {
+                return (
+                  <Fragment key={index}>
+                    <th>{e}</th>
+                  </Fragment>
+                );
+              })}
+            </tr>
+            <tr>
+              <td>Premium</td>
+              {Premium.map((e, index) => {
+                return (
+                  <Fragment key={index}>
+                    <td>{e.adjustment}</td>
+                  </Fragment>
+                );
+              })}
+            </tr>
+            <tr>
+              <td>Core plus</td>
+              {Core_plus.map((e, index) => {
+                return (
+                  <Fragment key={index}>
+                    <td>{e.adjustment}</td>
+                  </Fragment>
+                );
+              })}
+            </tr>
+            <tr>
+              <td>Core</td>
+              {Core.map((e, index) => {
+                return (
+                  <Fragment key={index}>
+                    <td>{e.adjustment}</td>
+                  </Fragment>
+                );
+              })}
+            </tr>
+            <tr>
+              <td>Value</td>
+              {Value.map((e, index) => {
+                return (
+                  <Fragment key={index}>
+                    <td>{e.adjustment}</td>
+                  </Fragment>
+                );
+              })}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default Dmpricing;
+
+import React, { Fragment, useMemo, useState } from "react";
+import Check from "./Check.json";
+// const Construction = () => {
+//   const All = [];
+
+//   for (const demo in {...Check }) {
+//     console.log(demo);
+//     // const demos = { ...Check };
+//     // if (Object.hasOwnProperty.call(demos, demo)) {
+//     //   console.log(demos);
+//     // }
+//   }
+// };
+
+function Dmpricing() {
+  //   console.log(Check);
+  //   const allData = useMemo(() => Construction(), []);
+
+  //   Check.map((e) => {
+  // const data = Check.includes(e.year === e.year);
+  //    console.log(data)
+  //   });
+  const [toggle, SetToggle] = useState(false);
+  const unique = [...new Map(Check.map((m) => [m.year, m])).values()];
+  const year = unique.map((e) => e.year);
+
+  const Premium = Check.filter((e) => e.price_segment === "Premium");
+  const Core = Check.filter((e) => e.price_segment === "Core");
+  const Core_plus = Check.filter((e) => e.price_segment === "Core plus");
+  const Value = Check.filter((e) => e.price_segment === "Value");
+
+  const handleChange = (labels, e, year) => {
+    const index = labels.findIndex((obj) => obj.year == year);
+    labels[index].adjustment = e.target.value;
+    // switch (label) {
+    //   case "Premium":
+    //     const premium_index = Premium.findIndex((obj) => obj.year == year);
+    //     Premium[premium_index].adjustment = e.target.value;
+    //     break;
+    //   case "Core_plus":
+    //     const Coreplus_index = Premium.findIndex((obj) => obj.year == year);
+    //     Core_plus[Coreplus_index].adjustment = e.target.value;
+    //   case "Core":
+    //     const Core_index = Premium.findIndex((obj) => obj.year == year);
+    //     Core[Core_index].adjustment = e.target.value;
+    //     break;
+    //   case "Value":
+    //     const Value_index = Premium.findIndex((obj) => obj.year == year);
+    //     Value[Value_index].adjustment = e.target.value;
+    //     break;
+    //   default:
+    //     break;
+    // }
+  };
+
+  console.log(Premium, Core, Core_plus, Value);
+  return (
+    <div className="BoxContainer">
+      <h4>Segment-level pricing actions</h4>
+
+      <div onClick={() => SetToggle(!toggle)} className="editButton">
+        {!toggle ? "Edit" : "Save"}
+      </div>
+
+      <table>
+        <tbody>
+          <tr>
+            <th>Adjustment</th>
+            {year.map((e, index) => {
+              return (
+                <Fragment key={index}>
+                  <th>{e}</th>
+                </Fragment>
+              );
+            })}
+          </tr>
+          <tr>
+            <td>Premium</td>
+            {Premium.map((ele, index) => {
+              return (
+                <Fragment key={index}>
+                  {toggle ? (
+                    <td>
+                      <input
+                        defaultValue={ele.adjustment}
+                        onChange={(e) => handleChange(Premium, e, ele.year)}
+                      />
+                    </td>
+                  ) : (
+                    <td style={{ width: "50px" }}>{ele.adjustment}%</td>
+                  )}
+                </Fragment>
+              );
+            })}
+          </tr>
+          <tr>
+            <td>Core plus</td>
+            {Core_plus.map((ele, index) => {
+              return (
+                <Fragment key={index}>
+                  {toggle ? (
+                    <td>
+                      <input
+                        defaultValue={ele.adjustment}
+                        onChange={(e) => handleChange(Core_plus, e, ele.year)}
+                      />
+                    </td>
+                  ) : (
+                    <td>{ele.adjustment}%</td>
+                  )}
+                </Fragment>
+              );
+            })}
+          </tr>
+          <tr>
+            <td>Core</td>
+            {Core.map((ele, index) => {
+              return (
+                <Fragment key={index}>
+                  {toggle ? (
+                    <td>
+                      <input
+                        defaultValue={ele.adjustment}
+                        onChange={(e) => handleChange(Core, e, ele.year)}
+                      />
+                    </td>
+                  ) : (
+                    <td>{ele.adjustment}%</td>
+                  )}
+                </Fragment>
+              );
+            })}
+          </tr>
+          <tr>
+            <td>Value</td>
+            {Value.map((ele, index) => {
+              return (
+                <Fragment key={index}>
+                  {toggle ? (
+                    <td>
+                      <input
+                        defaultValue={ele.adjustment}
+                        onChange={(e) => handleChange(Value, e, ele.year)}
+                      />
+                    </td>
+                  ) : (
+                    <td>{ele.adjustment}%</td>
+                  )}
+                </Fragment>
+              );
+            })}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default Dmpricing;
+
